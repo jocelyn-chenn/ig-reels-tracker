@@ -5,58 +5,23 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+IG_SESSION_ID = os.getenv("IG_SESSION_ID")
+
+# 每次掃主頁只看最新幾篇（3篇就夠抓到新發的）
+REELS_PER_SCAN = 3
+
 # ============================================================
 # 從 CSV 讀取 KOL 名單
 # ============================================================
 def load_influencers_from_csv(csv_path="KOL_sheet.csv") -> list[str]:
     try:
         df = pd.read_csv(csv_path)
-        usernames = []
-        for val in df["LINK"].dropna():
-            val = str(val).strip()
-
-            if "instagram.com" in val:
-                # 移除網址參數（? 後面的部分）
-                val = val.split("?")[0]
-                # 移除結尾斜線
-                val = val.rstrip("/")
-                # 取路徑各段
-                parts = val.split("/")
-                # 過濾掉空字串
-                parts = [p for p in parts if p]
-
-                # 跳過格式是 /reels/shortcode/ 的連結（這是單篇貼文，不是帳號）
-                if "reels" in parts:
-                    idx = parts.index("reels")
-                    # reels 前面那個才是帳號（如果有的話）
-                    if idx > 0 and parts[idx-1] not in ("www.instagram.com", "instagram.com"):
-                        username = parts[idx-1]
-                    else:
-                        # 純 /reels/shortcode 格式，跳過
-                        continue
-                else:
-                    # 一般帳號連結，取最後一段
-                    username = parts[-1]
-            else:
-                username = val.strip()
-
-            # 基本驗證：跳過明顯不是帳號的字串
-            if not username or "?" in username or "=" in username or len(username) > 30:
-                continue
-
-            usernames.append(username)
-
-        # 去除重複，但保留順序
-        seen = set()
-        unique = []
-        for u in usernames:
-            if u not in seen:
-                seen.add(u)
-                unique.append(u)
-
-        print(f"從 CSV 載入 {len(unique)} 位 KOL")
-        return unique
-
+        # 直接取 ID 欄，裡面就是 IG username
+        usernames = df["ID"].dropna().tolist()
+        # 去除重複
+        usernames = list(dict.fromkeys(usernames))
+        print(f"從 CSV 載入 {len(usernames)} 位 KOL")
+        return usernames
     except Exception as e:
         print(f"讀取 CSV 失敗：{e}")
         return []

@@ -1,13 +1,10 @@
 # updater.py
-# 負責每天回抓已收錄業配 Reels 的最新互動數
-# 把每天的數據存成快照，這樣之後可以看成長曲線
-
 import time
-from datetime import date
-from curl_cffi import requests
-from config import IG_APP_ID, IG_DOC_ID, SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX
-from database import get_all_tracked_reels, save_daily_stat
 import random
+from datetime import datetime
+from curl_cffi import requests
+from config import IG_APP_ID, IG_SESSION_ID, IG_DOC_ID, SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX
+from database import get_all_tracked_reels, save_daily_stat
 
 BASE_HEADERS = {
     "user-agent": (
@@ -16,15 +13,14 @@ BASE_HEADERS = {
         "Chrome/123.0.0.0 Safari/537.36"
     ),
     "x-ig-app-id": IG_APP_ID,
-    "accept-language": "zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7",
+    "cookie": f"sessionid={IG_SESSION_ID}",
 }
 
-def get_reel_stats(shortcode: str) -> dict | None:
+def get_reel_stats(shortcode: str) -> dict:
     """
-    抓取單篇 Reels 目前的互動數
-    回傳：{"likes": 123, "comments": 45, "views": 6789}
+    用 GraphQL 抓觀看數、按讚數、留言數
     """
-    api_url = (
+    url = (
         f"https://www.instagram.com/graphql/query/"
         f"?doc_id={IG_DOC_ID}"
         f'&variables={{"shortcode":"{shortcode}"}}'
@@ -33,74 +29,69 @@ def get_reel_stats(shortcode: str) -> dict | None:
         **BASE_HEADERS,
         "referer": f"https://www.instagram.com/reels/{shortcode}/",
     }
-
     try:
         response = requests.get(
-            api_url,
-            headers=headers,
-            impersonate="chrome120",
-            timeout=15
+            url, headers=headers, impersonate="chrome120", timeout=15
         )
-
-        if response.status_code != 200:
-            print(f"    錯誤：HTTP {response.status_code}")
-            return None
-
-        data = response.json()
-        node = data.get("data", {}).get("xdt_shortcode_media")
-
-        if not node:
-            print(f"    找不到資料，doc_id 可能已過期")
-            return None
-
-        likes    = node.get("edge_media_preview_like", {}).get("count", 0)
-        comments = node.get("edge_media_to_comment", {}).get("count", 0)
-        views    = node.get("video_view_count", 0)
-
-        return {"likes": likes, "comments": comments, "views": views}
-
+        if response.status_code == 200:
+            node = response.json().get("data", {}).get("xdt_shortcode_media", {})
+            if node:
+                return {
+                    "views":    node.get("video_view_count") or 0,
+                    "plays":    node.get("video_play_count") or 0,
+                    "likes":    node.get("edge_media_preview_like", {}).get("count") or 0,
+                    "comments": node.get("edge_media_to_comment", {}).get("count") or 0,
+                }
+        print(f"    GraphQL 回傳異常：HTTP {response.status_code}")
+        return {"views": 0, "plays": 0, "likes": 0, "comments": 0}
     except Exception as e:
-        print(f"    抓取互動數時發生錯誤：{e}")
-        return None
+        print(f"    抓互動數失敗：{e}")
+        return {"views": 0, "plays": 0, "likes": 0, "comments": 0}
 
+def should_update(first_seen_str: str, now: datetime) -> bool:
+    """根據收錄時間決定這篇要不要更新"""
+    first_seen = datetime.strptime(first_seen_str, "%Y-%m-%d %H:%M:%S")
+    hours_old = (now - first_seen).total_seconds() / 3600
+
+    if hours_old <= 6:
+        return True
+    elif hours_old <= 24:
+        return now.hour % 2 == 0 and now.minute < 30
+    elif hours_old <= 168:
+        return now.hour == 2 and now.minute < 30
+    else:
+        return False
 
 def run_daily_update():
-    """
-    對所有已收錄的業配 Reels 執行每日互動數更新
-    這個函數每天被 GitHub Actions 呼叫一次
-    """
-    today = str(date.today())   # 格式：2024-04-02
+    now = datetime.now()
+    recorded_at = now.strftime("%Y-%m-%d %H:%M")
     reels = get_all_tracked_reels()
 
     if not reels:
         print("資料庫裡還沒有收錄任何 Reels，跳過更新")
         return
 
-    print(f"開始每日更新，今天日期：{today}")
-    print(f"共需更新 {len(reels)} 篇 Reels")
+    print(f"開始更新，時間：{recorded_at}，共 {len(reels)} 篇待檢查")
 
-    success = 0
-    failed  = 0
+    updated = 0
+    skipped = 0
 
-    for shortcode, url in reels:
+    for shortcode, url, first_seen in reels:
+        if not should_update(first_seen, now):
+            skipped += 1
+            continue
+
         print(f"  更新：{shortcode}")
         stats = get_reel_stats(shortcode)
+        save_daily_stat(
+            shortcode=shortcode,
+            recorded_at=recorded_at,
+            likes=stats["likes"],
+            comments=stats["comments"],
+            views=stats["views"],
+        )
+        print(f"    觀看：{stats['views']}  按讚：{stats['likes']}  留言：{stats['comments']}")
+        time.sleep(random.uniform(SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX))
+        updated += 1
 
-        if stats:
-            save_daily_stat(
-                shortcode = shortcode,
-                date      = today,
-                likes     = stats["likes"],
-                comments  = stats["comments"],
-                views     = stats["views"],
-            )
-            print(f"    按讚：{stats['likes']}  留言：{stats['comments']}  觀看：{stats['views']}")
-            success += 1
-        else:
-            failed += 1
-
-        # 隨機延遲，避免被封
-        delay = random.uniform(SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX)
-        time.sleep(delay)
-
-    print(f"\n每日更新完成：成功 {success} 篇，失敗 {failed} 篇")
+    print(f"更新完成：更新 {updated} 篇，跳過 {skipped} 篇")
