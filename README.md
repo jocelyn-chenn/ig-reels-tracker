@@ -1,307 +1,270 @@
-# IG Reels Tracker
-自動追蹤 Instagram 網紅的業配 Reels，用 AI 判斷是否為業配文，並每天記錄互動數據。
+# 📱 IG KOL 業配 Reels 自動追蹤系統
+
+這是一個全自動的 Instagram 監測工具，會每小時掃描指定 KOL 的 IG 帳號，用 AI 判斷有沒有發業配 Reels，並且持續追蹤每篇 Reels 的觀看數、按讚數、留言數變化。
+
+> 電腦不用開著，GitHub 會幫你自動跑。
 
 ---
 
-## 目錄
-
-- [這個專案在做什麼](#這個專案在做什麼)
-- [系統架構與運作邏輯](#系統架構與運作邏輯)
-- [每個檔案的用途](#每個檔案的用途)
-- [資料庫結構](#資料庫結構)
-- [快速開始](#快速開始)
-- [設定 GitHub Actions 自動排程](#設定-github-actions-自動排程)
-- [常見問題](#常見問題)
-- [注意事項](#注意事項)
-
----
-
-## 這個專案在做什麼
-
-這是一個**全自動的 IG 業配監測系統**，主要功能：
-
-1. **每 30 分鐘**自動掃描指定網紅的 IG 主頁，偵測有沒有發新的 Reels
-2. 發現新 Reels 後，把文案丟給 **Gemini AI** 判斷是不是業配文（商業合作/贊助內容）
-3. 判斷為業配的 Reels 自動收錄進 **SQLite 資料庫**
-4. 每天持續回去抓已收錄 Reels 的**按讚數、留言數、觀看數**，形成成長曲線
-5. 整個系統跑在 **GitHub Actions** 上，電腦關著也照樣運行
-
-適合用來追蹤 KOL 的業配頻率、品牌合作狀況、以及業配貼文的互動表現。
-
----
-
-## 系統架構與運作邏輯
+## 這個系統在做什麼
 
 ```
-GitHub Actions 排程觸發（每30分鐘）
-        │
-        ▼
-   main.py 主程式
-        │
-        ├─── [Step 1] 初始化資料庫
-        │         database.py → 建立三張資料表（如果不存在）
-        │         從 config.py 載入 KOL 清單 → 寫入 influencers 表
-        │
-        ├─── [Step 2] 健康檢查
-        │         health_check.py → 測試 IG REST API 是否正常
-        │                        → 測試 GraphQL doc_id 是否還有效
-        │
-        ├─── [Step 3] 對每位 KOL 執行抓取 + AI 分析
-        │         scraper.py → 掃主頁，取得最新 Reels 清單（REST API，穩定）
-        │                   → 抓單篇詳細資料（GraphQL API，需 doc_id）
-        │         analyzer.py → 把文案 + tagged 帳號丟給 Gemini
-        │                    → Gemini 回傳「是業配 / 不是業配」+ 理由
-        │         database.py → 業配的 Reels 存進 sponsored_reels 表
-        │
-        └─── [Step 4] 更新每日互動數
-                  updater.py → 對所有已收錄的 Reels 重新抓按讚/留言/觀看數
-                  database.py → 存進 daily_stats 表（每天一筆快照）
+每小時整點（scan）
+  → 掃 126 位 KOL 的 IG 主頁
+  → 偵測有沒有 30 分鐘內的新 Reels
+  → 丟給 Gemini AI 判斷是不是業配文
+  → 全部存進資料庫（業配標 sponsored，一般標 none）
+
+每小時半點（update）
+  → 對資料庫裡所有 Reels 重新抓一次數據
+  → 記錄當下的觀看數、按讚數、留言數
+  → 形成時間序列，可以畫趨勢圖
 ```
-
-### 為什麼用兩種 API？
-
-| API 類型 | 用途 | 穩定性 |
-|----------|------|--------|
-| REST API (`web_profile_info`) | 掃主頁、取得 Reels 清單 | 穩定，不需要 doc_id |
-| GraphQL API | 抓單篇詳細數據（按讚數、文案等）| 需要 doc_id，約 2-4 週更新一次 |
-
-這樣設計是為了降低風險：就算 doc_id 過期，至少還能掃到有沒有新 Reels，只是詳細數據暫時抓不到。
-
-### 為什麼用 curl_cffi？
-
-IG 有很強的反爬蟲機制，會檢查你的請求「看起來像不像真實瀏覽器」。`curl_cffi` 可以模擬真實 Chrome 瀏覽器的 TLS 指紋，大幅降低被封鎖的機率。
 
 ---
 
-## 每個檔案的用途
+## 資料夾結構
 
 ```
 ig-reels-tracker/
 │
 ├── .github/
 │   └── workflows/
-│       └── daily_run.yml    ← GitHub Actions 排程設定（每30分鐘執行）
+│       ├── scan.yml       ← 每小時整點自動掃新 Reels
+│       └── update.yml     ← 每小時半點自動更新互動數
 │
 ├── data/
-│   └── tracker.db           ← SQLite 資料庫（自動產生，存所有資料）
+│   └── tracker.db         ← SQLite 資料庫（自動產生）
 │
-├── config.py                ← 設定中心：KOL 清單、API Keys、爬蟲參數
-├── scraper.py               ← 負責從 IG 抓資料（用 curl_cffi 模擬瀏覽器）
-├── analyzer.py              ← 負責用 Gemini AI 判斷是否為業配文
-├── database.py              ← 負責所有資料庫讀寫操作
-├── updater.py               ← 負責每日回抓已收錄 Reels 的互動數
-├── health_check.py          ← 每次執行前先測試 API 是否正常
-├── main.py                  ← 主程式，把以上全部串起來
+├── scan.py                ← 掃新貼文的入口
+├── update.py              ← 更新互動數的入口
+├── scraper.py             ← 負責從 IG 抓資料
+├── analyzer.py            ← 負責用 Gemini AI 判斷業配
+├── database.py            ← 負責所有資料庫讀寫
+├── updater.py             ← 負責抓互動數的邏輯
+├── health_check.py        ← 每次執行前先確認 API 正常
+├── config.py              ← 所有設定集中在這裡
 │
-├── KOL_sheet.csv            ← 你要追蹤的 KOL 名單（自行替換）
-├── requirements.txt         ← Python 套件清單
-├── .env                     ← 你的 API Keys（不能上傳 GitHub！）
-└── .env.example             ← .env 的格式範本（可以上傳）
+├── KOL_sheet.csv          ← KOL 名單（自行替換）
+├── requirements.txt       ← Python 套件清單
+├── .env                   ← 你的 API Keys（不能上傳！）
+└── .env.example           ← .env 的格式範本
 ```
-
-### `config.py`
-整個專案的控制台。修改這裡就能調整所有行為，不需要動其他程式碼。
-- 從 `KOL_sheet.csv` 讀取要追蹤的帳號
-- 設定爬蟲延遲時間（太短容易被封，預設 3-7 秒）
-- 存放 IG 的 `doc_id`（過期時只需改這裡）
-
-### `scraper.py`
-分兩個函數：
-- `get_recent_reels(username)` — 用 REST API 掃主頁，取得最新影片清單
-- `get_reel_detail(shortcode)` — 用 GraphQL 抓單篇詳細資料（文案、時間、tagged 帳號）
-
-### `analyzer.py`
-把文案和 tagged 帳號傳給 Gemini，用繁體中文的業配判斷邏輯分析。
-回傳 `(True/False, "判斷理由")` 的格式。
-
-### `database.py`
-所有資料庫操作都集中在這裡，包括建表、寫入、查詢。
-其他模組需要存/讀資料時，統一透過這個檔案，不直接操作資料庫。
-
-### `updater.py`
-每次執行時，對資料庫裡所有已收錄的業配 Reels 重新抓一次互動數，
-形成時間序列資料，可以看每篇業配貼文的成長曲線。
-
-### `health_check.py`
-每次執行的最開始先跑健康檢查：
-- 如果 REST API 異常 → 可能 IP 被封，印出警告
-- 如果 GraphQL 異常 → `doc_id` 可能過期，印出提醒並告訴你怎麼更新
 
 ---
 
-## 資料庫結構
+## 資料庫長什麼樣子
 
 資料庫有三張表：
 
+### `sponsored_reels`（每篇 Reels 一筆）
+
+| 欄位 | 說明 |
+|------|------|
+| username | 哪個 KOL |
+| shortcode | Reels 的唯一 ID |
+| url | 完整連結 |
+| caption | 文案內容 |
+| post_time | 發文時間 |
+| sponsor_status | `sponsored`（業配）或 `none`（一般） |
+| ai_reason | Gemini 的判斷理由 |
+| tagged_brands | 被 tag 的品牌帳號 |
+| first_seen | 第一次被收錄的時間 |
+
+### `daily_stats`（每篇 Reels 每小時一筆）
+
+| 欄位 | 說明 |
+|------|------|
+| shortcode | 對應哪篇 Reels |
+| recorded_at | 記錄時間（精確到分鐘） |
+| views | 觀看數 |
+| plays | 播放數 |
+| likes | 按讚數 |
+| comments | 留言數 |
+
 ### `influencers`（追蹤的 KOL 清單）
-| 欄位 | 類型 | 說明 |
-|------|------|------|
-| id | INTEGER | 自動編號 |
-| username | TEXT | IG 帳號名稱 |
-| added_at | TEXT | 加入追蹤的時間 |
 
-### `sponsored_reels`（收錄的業配 Reels）
-| 欄位 | 類型 | 說明 |
-|------|------|------|
-| id | INTEGER | 自動編號 |
-| username | TEXT | 哪個網紅發的 |
-| shortcode | TEXT | Reels 的唯一識別碼 |
-| url | TEXT | 完整連結 |
-| caption | TEXT | 文案內容 |
-| post_time | TEXT | 發文時間 |
-| video_duration | REAL | 影片長度（秒） |
-| ai_reason | TEXT | Gemini 的判斷理由 |
-| tagged_brands | TEXT | 被 tag 的品牌帳號 |
-| first_seen | TEXT | 第一次被收錄的時間 |
-
-### `daily_stats`（每日互動數快照）
-| 欄位 | 類型 | 說明 |
-|------|------|------|
-| id | INTEGER | 自動編號 |
-| shortcode | TEXT | 對應哪篇 Reels |
-| date | TEXT | 記錄日期（YYYY-MM-DD）|
-| likes | INTEGER | 當天的按讚數 |
-| comments | INTEGER | 當天的留言數 |
-| views | INTEGER | 當天的觀看數 |
+| 欄位 | 說明 |
+|------|------|
+| username | IG 帳號名稱 |
+| added_at | 加入追蹤的時間 |
 
 ---
 
-## 快速開始
+## 如何 Clone 並在自己的電腦跑
 
 ### 前置需求
-- Python 3.10 以上
-- Git
-- GitHub 帳號
-- Gemini API Key（免費，申請網址：[aistudio.google.com](https://aistudio.google.com)）
 
-### 安裝步驟
+在開始之前，你需要準備好三樣東西：
 
-**1. Clone 這個 repo**
+**1. Gemini API Key（免費）**
+- 去 [aistudio.google.com](https://aistudio.google.com) 登入 Google 帳號
+- 點左側「Get API Key」→「Create API Key」
+- 複製那串 Key 備用
+
+**2. IG 小帳號的 sessionid**
+
+> ⚠️ 強烈建議申請一個專用小帳號，不要用你的主帳號，否則可能被 IG 偵測到自動化行為。
+
+- 用 Chrome 登入你的 IG 小帳號
+- 按 `F12` 開 DevTools → 切到 `Application` 分頁
+- 左側找 `Cookies` → `https://www.instagram.com`
+- 找到 `sessionid` 這個 cookie，複製它的值
+
+**3. Python 3.10 以上**
+- 在終端機輸入 `python3 --version` 確認版本
+
+---
+
+### Step 1：Clone repo 到你的電腦
+
+打開終端機，切到你想放專案的地方（例如桌面）：
+
 ```bash
-git clone https://github.com/你的帳號/ig-reels-tracker.git
+cd ~/Desktop
+git clone https://github.com/jocelyn-chenn/ig-reels-tracker.git
 cd ig-reels-tracker
 ```
 
-**2. 建立虛擬環境並安裝套件**
+### Step 2：建立虛擬環境
+
 ```bash
 python3 -m venv venv
-source venv/bin/activate      # Windows 用：venv\Scripts\activate
+source venv/bin/activate
+```
+
+成功後，終端機最前面會出現 `(venv)` 字樣。
+
+> 每次重新開終端機都要記得執行 `source venv/bin/activate`
+
+### Step 3：安裝套件
+
+```bash
 pip install -r requirements.txt
 ```
 
-**3. 建立 `.env` 檔案**
+### Step 4：建立 `.env` 檔案
+
 ```bash
 cp .env.example .env
 ```
-用任何文字編輯器打開 `.env`，填入你的 Gemini API Key：
+
+用任何編輯器打開 `.env`，填入你的 Key：
+
 ```
-GEMINI_API_KEY=你的_api_key_貼這裡
+GEMINI_API_KEY=你的_gemini_api_key
+IG_SESSION_ID=你的_ig_sessionid
 ```
 
-**4. 準備你的 KOL 名單**
+### Step 5：準備你的 KOL 名單
 
 把你的 KOL 清單存成 `KOL_sheet.csv`，格式如下：
+
 ```csv
 KOL ID,LINK,FANS,TYPE
 黃大謙,https://www.instagram.com/da_chien_huang/,514254,美妝時尚
 ```
-> `LINK` 欄位填 IG 個人頁面的完整網址，程式會自動擷取 username。
 
-**5. 測試執行**
+程式會自動從 `KOL ID` 欄讀取 IG 帳號名稱。
+
+### Step 6：測試執行
+
 ```bash
-python3 main.py
+python3 scan.py
 ```
+
+看到「Scan 完成」就代表成功！
 
 ---
 
-## 設定 GitHub Actions 自動排程
+## 如何設定 GitHub Actions 自動跑
 
-### Step 1：把 Gemini API Key 存進 GitHub Secrets
+這樣你的電腦就不用一直開著了。
 
-1. 進入你的 GitHub repo 頁面
-2. 點上方 `Settings` → 左側 `Secrets and variables` → `Actions`
-3. 點 `New repository secret`
-4. Name 填 `GEMINI_API_KEY`，Secret 填你的 API Key
-5. 點 `Add secret`
+### Step 1：建立自己的 repo
 
-### Step 2：推上 GitHub
+在 GitHub 上建一個新的 private repo，把所有程式碼放進去。
 
-```bash
-git add .
-git commit -m "Initial setup"
-git push
+### Step 2：加入 GitHub Secrets
+
+去你的 repo → `Settings` → `Secrets and variables` → `Actions` → `New repository secret`
+
+加入兩個 Secret：
+
+| Name | Secret |
+|------|--------|
+| `GEMINI_API_KEY` | 你的 Gemini API Key |
+| `IG_SESSION_ID` | 你的 IG sessionid |
+
+### Step 3：開啟 Actions 寫入權限
+
+repo → `Settings` → `Actions` → `General` → 拉到最下面 → `Workflow permissions` → 選 `Read and write permissions` → `Save`
+
+### Step 4：手動觸發測試
+
+repo → `Actions` → 左側選 `Scan New Reels` → 右側 `Run workflow` → `Run workflow`
+
+看到綠色勾勾就成功了！之後每小時整點會自動跑 scan，半點會自動跑 update。
+
+---
+
+## 怎麼查看收集到的資料
+
+安裝 [DB Browser for SQLite](https://sqlitebrowser.org/)（免費），直接打開 `data/tracker.db` 就可以用表格方式瀏覽所有資料。
+
+或是用 Python 查詢：
+
+```python
+import sqlite3
+conn = sqlite3.connect("data/tracker.db")
+cursor = conn.cursor()
+
+# 查所有業配 Reels
+cursor.execute("""
+    SELECT username, post_time, url, ai_reason
+    FROM sponsored_reels
+    WHERE sponsor_status = 'sponsored'
+    ORDER BY post_time DESC
+""")
+for row in cursor.fetchall():
+    print(row)
+
+conn.close()
 ```
-
-### Step 3：手動觸發測試
-
-1. 進入 GitHub repo → 點 `Actions`
-2. 左側點 `Daily IG Reels Tracker`
-3. 右側點 `Run workflow` → `Run workflow`
-
-看到綠色勾勾就代表成功！之後每天 08:00-23:00 每 30 分鐘會自動執行。
 
 ---
 
 ## 常見問題
 
-### doc_id 過期怎麼辦？
+**sessionid 過期怎麼辦？**
+重新從 Chrome 複製新的 sessionid，更新 `.env` 和 GitHub Secrets 裡的 `IG_SESSION_ID` 就好。大概幾週到幾個月會過期一次。
 
-`doc_id` 是 IG GraphQL 的內部查詢 ID，大約每 2-4 週會更新一次。過期時 `health_check.py` 會印出警告。
+**Gemini 判斷錯了怎麼辦？**
+去 `analyzer.py` 裡調整 prompt，增加更多業配的判斷標準，或是針對特定品牌加入關鍵字。
 
-更新方法（約 5 分鐘）：
-1. 用 Chrome 登入 IG，按 `F12` 開 DevTools
-2. 切到 `Network` 分頁，過濾 `graphql`
-3. 點開任意一篇 Reels
-4. 在 Network 裡找到含有 `doc_id` 的請求，複製新的數字
-5. 貼到 `config.py` 的 `IG_DOC_ID` 並推上 GitHub
+**要新增或移除 KOL 怎麼辦？**
+直接修改 `KOL_sheet.csv`，加入或刪除對應的列，推上 GitHub 後下次執行就會生效。
 
-### 為什麼有些 Reels 抓不到詳細資料？
+**為什麼一定要用小帳號跑？**
+IG 會偵測自動化行為，用主帳號跑爬蟲有被停權的風險。用專用小帳號就算被封也不影響你的主帳號。
 
-可能原因：
-- 該 Reels 設定為限定受眾或私人帳號
-- `doc_id` 已過期（看 health_check 的輸出）
-- 該次請求被 IG 限流（等下次自動執行就好）
+---
 
-### 怎麼查看已收錄的業配資料？
+## 技術說明
 
-可以用任何 SQLite 工具打開 `data/tracker.db`，例如：
-- [DB Browser for SQLite](https://sqlitebrowser.org/)（免費桌面軟體）
-- VSCode 安裝 `SQLite Viewer` 插件
-
-或是直接用 Python 查詢：
-```python
-import sqlite3
-conn = sqlite3.connect("data/tracker.db")
-cursor = conn.cursor()
-cursor.execute("SELECT username, url, post_time, ai_reason FROM sponsored_reels ORDER BY first_seen DESC")
-for row in cursor.fetchall():
-    print(row)
-conn.close()
-```
-
-### 怎麼新增或移除追蹤的 KOL？
-
-直接修改 `KOL_sheet.csv`，加入或刪除對應的列，推上 GitHub 後下次執行就會生效。不需要動任何程式碼。
+| 工具 | 用途 |
+|------|------|
+| `curl_cffi` | 模擬真實 Chrome 瀏覽器發送請求，繞過 IG 反爬蟲偵測 |
+| `google-genai` | 呼叫 Gemini 2.5 Flash 判斷業配文 |
+| `SQLite` | 輕量資料庫，存放所有追蹤資料 |
+| `pandas` | 讀取 KOL 名單 CSV |
+| `python-dotenv` | 從 `.env` 讀取 API Key |
+| `GitHub Actions` | 雲端自動排程，每小時自動執行 |
 
 ---
 
 ## 注意事項
 
-- **`.env` 絕對不能上傳 GitHub**，裡面有你的 API Key，已透過 `.gitignore` 擋住
-- 這個專案使用 IG 的內部 API，非官方支援，使用時請遵守 IG 使用條款
-- 爬蟲延遲設定請不要調太短（建議最低 1 秒），避免對 IG 伺服器造成過大負擔或被封鎖
-- Gemini API 有免費使用額度限制，如果 KOL 數量很多，留意有沒有超額
-
----
-
-## 技術棧
-
-| 工具 | 用途 |
-|------|------|
-| Python 3.10+ | 主要程式語言 |
-| curl_cffi | 模擬真實瀏覽器發送請求，繞過 IG 反爬蟲 |
-| google-genai | 呼叫 Gemini AI 判斷業配文 |
-| SQLite | 輕量資料庫，存放所有追蹤資料 |
-| pandas | 讀取 KOL 名單 CSV |
-| python-dotenv | 從 .env 檔案讀取 API Key |
-| GitHub Actions | 雲端自動排程，電腦關著也能跑 |
+- `.env` 絕對不能上傳 GitHub，裡面有你的 API Key 和 sessionid
+- 這個工具使用 IG 的內部 API，非官方支援，請自行評估使用風險
+- 建議使用專用小帳號，不要用主帳號的 sessionid
