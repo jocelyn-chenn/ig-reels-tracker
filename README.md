@@ -1,4 +1,4 @@
-# 📱 IG KOL 業配 Reels 自動追蹤系統
+# IG KOL 業配 Reels 自動追蹤系統
 
 這是一個全自動的 Instagram 監測工具，會每小時掃描指定 KOL 的 IG 帳號，用 AI 判斷有沒有發業配 Reels，並且持續追蹤每篇 Reels 的觀看數、按讚數、留言數變化。
 
