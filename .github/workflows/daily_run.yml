@@ -5,42 +5,33 @@ on:
     - cron: '*/30 0-15 * * *'
   workflow_dispatch:
 
-  # 讓你可以在 GitHub 網頁上手動觸發，方便測試
-  workflow_dispatch:
-
 jobs:
   run-tracker:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1：把你的 repo 下載到 GitHub 的伺服器上
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Step 2：安裝 Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # Step 3：安裝套件
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Step 4：建立 .env 檔案（從 GitHub Secrets 讀取 API Key）
       - name: Create .env file
         run: |
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
 
-      # Step 5：執行主程式
       - name: Run tracker
         run: python3 main.py
 
-      # Step 6：把更新後的資料庫存回 GitHub repo
       - name: Commit updated database
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/tracker.db
+          git add -f data/tracker.db
           git diff --staged --quiet || git commit -m "Auto update: $(date +'%Y-%m-%d')"
           git push
