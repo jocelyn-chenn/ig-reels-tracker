@@ -2,7 +2,7 @@
 from curl_cffi import requests
 from config import IG_APP_ID, IG_SESSION_ID
 
-TEST_USERNAME = "instagram"
+TEST_USERNAME = "da_chien_huang"
 
 def check_health() -> bool:
     print("  檢查 IG REST API...")

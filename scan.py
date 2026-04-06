@@ -15,9 +15,9 @@ def run():
     init_db()
     insert_influencers()
 
+
     if not check_health():
-        print("健康檢查失敗，中止執行")
-        return
+        print("健康檢查失敗，但繼續嘗試...")
 
     influencers = get_all_influencers()
     print(f"共 {len(influencers)} 位 KOL")
