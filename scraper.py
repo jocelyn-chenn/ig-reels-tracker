@@ -24,7 +24,6 @@ def _random_delay():
 def get_recent_reels(username: str) -> list[dict]:
     print(f"正在掃描 @{username} 的主頁...")
 
-    # 30 分鐘前的時間點
     cutoff = datetime.now() - timedelta(minutes=70)
     cutoff_ts = cutoff.timestamp()
 
@@ -66,7 +65,6 @@ def get_recent_reels(username: str) -> list[dict]:
 
             timestamp = node.get("taken_at_timestamp", 0)
 
-            # 只要 30 分鐘內發的
             if timestamp < cutoff_ts:
                 continue
 
@@ -79,7 +77,7 @@ def get_recent_reels(username: str) -> list[dict]:
                 for e in tagged
             ])
 
-            post_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(timestamp))
+            post_time = datetime.fromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
             comments = node.get("edge_media_to_comment", {}).get("count", 0)
 
             reels.append({
@@ -94,7 +92,7 @@ def get_recent_reels(username: str) -> list[dict]:
                 "ai_reason": "",
             })
 
-        print(f"  找到 {len(reels)} 篇 30 分鐘內的新貼文")
+        print(f"  找到 {len(reels)} 篇 70 分鐘內的新貼文")
         return reels
 
     except Exception as e:
