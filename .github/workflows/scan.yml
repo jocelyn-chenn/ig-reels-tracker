@@ -24,6 +24,9 @@ jobs:
         run: |
           echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
           echo "IG_SESSION_ID=${{ secrets.IG_SESSION_ID }}" >> .env
+          echo "GMAIL_USER=${{ secrets.GMAIL_USER }}" >> .env
+          echo "GMAIL_APP_PASSWORD=${{ secrets.GMAIL_APP_PASSWORD }}" >> .env
+          echo "NOTIFY_EMAIL=${{ secrets.NOTIFY_EMAIL }}" >> .env
 
       - name: Run scan
         run: python3 scan.py
@@ -33,4 +36,4 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -f data/tracker.db
-          git diff --staged --quiet || (git commit -m "Auto update: $(date +'%Y-%m-%d %H:%M')" && git pull --rebase && git push)
+          git diff --staged --quiet || (git commit -m "Scan: $(date +'%Y-%m-%d %H:%M')" && git pull --rebase && git push)

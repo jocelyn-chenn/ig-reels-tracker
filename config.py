@@ -75,3 +75,7 @@ def get_random_proxy() -> dict:
     host, port, user, passwd = random.choice(PROXIES)
     proxy_url = f"http://{user}:{passwd}@{host}:{port}"
     return {"http": proxy_url, "https": proxy_url}
+
+GMAIL_USER = os.getenv("GMAIL_USER")
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
+NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL")

@@ -1,8 +1,10 @@
 # health_check.py
 from curl_cffi import requests
 from config import IG_APP_ID, IG_SESSION_ID, get_random_proxy
+from notifier import notify_session_expired
 
 TEST_USERNAME = "da_chien_huang"
+_notified = False  # 避免重複發信
 
 def check_health() -> bool:
     print("  檢查 IG REST API...")
@@ -10,7 +12,11 @@ def check_health() -> bool:
     if rest_ok:
         print("  健康檢查通過")
     else:
-        print("  警告：REST API 異常，可能 IP 被封")
+        print("  警告：REST API 異常，可能 sessionid 過期")
+        global _notified
+        if not _notified:
+            notify_session_expired()
+            _notified = True
     return rest_ok
 
 def _check_rest_api() -> bool:
@@ -26,7 +32,11 @@ def _check_rest_api() -> bool:
     }
     try:
         response = requests.get(
-            url, headers=headers, impersonate="chrome120", timeout=15, proxies=get_random_proxy()
+            url,
+            headers=headers,
+            impersonate="chrome120",
+            timeout=15,
+            proxies=get_random_proxy(),
         )
         if response.status_code == 200:
             user = response.json().get("data", {}).get("user", {})
