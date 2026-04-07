@@ -3,7 +3,7 @@ import time
 import random
 from datetime import datetime
 from curl_cffi import requests
-from config import IG_APP_ID, IG_SESSION_ID, IG_DOC_ID, SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX
+from config import IG_APP_ID, IG_SESSION_ID, IG_DOC_ID, SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX, get_random_proxy
 from database import get_all_tracked_reels, save_daily_stat
 
 BASE_HEADERS = {
@@ -31,7 +31,7 @@ def get_reel_stats(shortcode: str) -> dict:
     }
     try:
         response = requests.get(
-            url, headers=headers, impersonate="chrome120", timeout=15
+            url, headers=headers, impersonate="chrome120", timeout=15, proxies=get_random_proxy()
         )
         if response.status_code == 200:
             node = response.json().get("data", {}).get("xdt_shortcode_media", {})

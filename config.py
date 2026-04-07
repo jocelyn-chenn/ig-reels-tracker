@@ -55,3 +55,23 @@ SPONSORED_KEYWORDS = [
 # 資料庫設定
 # ============================================================
 DB_PATH = "data/tracker.db"
+
+import random
+
+PROXIES = [
+    ("31.59.20.176", "6754", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("23.95.150.145", "6114", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("198.23.239.134", "6540", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("45.38.107.97", "6014", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("107.172.163.27", "6543", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("198.105.121.200", "6462", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("216.10.27.159", "6837", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("142.111.67.146", "5611", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("191.96.254.138", "6185", "ngbhahmk", "p8vgbsa6ljjn"),
+    ("31.58.9.4", "6077", "ngbhahmk", "p8vgbsa6ljjn"),
+]
+
+def get_random_proxy() -> dict:
+    host, port, user, passwd = random.choice(PROXIES)
+    proxy_url = f"http://{user}:{passwd}@{host}:{port}"
+    return {"http": proxy_url, "https": proxy_url}

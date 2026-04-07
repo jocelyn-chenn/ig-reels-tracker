@@ -3,7 +3,7 @@ import time
 import random
 from datetime import datetime, timedelta
 from curl_cffi import requests
-from config import IG_APP_ID, SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX, IG_SESSION_ID
+from config import IG_APP_ID, IG_SESSION_ID, SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX, get_random_proxy
 
 BASE_HEADERS = {
     "user-agent": (
@@ -36,7 +36,11 @@ def get_recent_reels(username: str) -> list[dict]:
 
     try:
         response = requests.get(
-            url, headers=headers, impersonate="chrome120", timeout=15
+            url,
+            headers=headers,
+            impersonate="chrome120",
+            timeout=15,
+            proxies=get_random_proxy(),
         )
 
         if response.status_code != 200:
