@@ -25,7 +25,7 @@ def get_recent_reels(username: str) -> list[dict]:
     print(f"正在掃描 @{username} 的主頁...")
 
     # 30 分鐘前的時間點
-    cutoff = datetime.now() - timedelta(minutes=30)
+    cutoff = datetime.now() - timedelta(minutes=70)
     cutoff_ts = cutoff.timestamp()
 
     url = f"https://i.instagram.com/api/v1/users/web_profile_info/?username={username}"
