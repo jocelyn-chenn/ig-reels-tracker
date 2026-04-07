@@ -51,5 +51,30 @@ def run():
     print(f"=== Scan 完成：耗時 {(end-start).seconds} 秒，新收錄 {total_new} 篇 ===")
     get_stats_summary()
 
+    from notifier import notify_scan_result
+
+    # 在最後 get_stats_summary() 後面加：
+    from database import get_connection
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM influencers")
+    n_influencers = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM sponsored_reels")
+    n_reels = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM sponsored_reels WHERE sponsor_status='sponsored'")
+    n_sponsored = cursor.fetchone()[0]
+    cursor.execute("SELECT COUNT(*) FROM daily_stats")
+    n_stats = cursor.fetchone()[0]
+    conn.close()
+
+    notify_scan_result(
+        duration=(end - start).seconds,
+        total_new=total_new,
+        n_influencers=n_influencers,
+        n_reels=n_reels,
+        n_sponsored=n_sponsored,
+        n_stats=n_stats,
+    )
+
 if __name__ == "__main__":
     run()

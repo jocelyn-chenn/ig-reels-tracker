@@ -10,6 +10,9 @@ IG_SESSION_ID = os.getenv("IG_SESSION_ID")
 # 每次掃主頁只看最新幾篇（3篇就夠抓到新發的）
 REELS_PER_SCAN = 3
 
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+
 # ============================================================
 # 從 CSV 讀取 KOL 名單
 # ============================================================
@@ -79,3 +82,4 @@ def get_random_proxy() -> dict:
 GMAIL_USER = os.getenv("GMAIL_USER")
 GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD")
 NOTIFY_EMAIL = os.getenv("NOTIFY_EMAIL")
+
