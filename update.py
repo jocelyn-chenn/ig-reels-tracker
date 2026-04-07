@@ -1,10 +1,16 @@
 # update.py
 # 只負責更新資料庫中所有 Reels 的最新互動數
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from database import init_db, get_all_tracked_reels, save_daily_stat
 from updater import get_reel_stats
 import time, random
 from config import SCRAPER_DELAY_MIN, SCRAPER_DELAY_MAX
+
+
+# 改成台灣時間 UTC+8
+tw_tz = timezone(timedelta(hours=8))
+now = datetime.now(tw_tz)
+recorded_at = now.strftime("%Y-%m-%d %H:%M")
 
 def run():
     start = datetime.now()
