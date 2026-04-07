@@ -106,10 +106,9 @@ def save_daily_stat(shortcode: str, recorded_at: str, likes: int, comments: int,
     conn.close()
 
 def get_all_tracked_reels():
-    """取得所有已收錄的 Reels（updater 用）"""
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT shortcode, url FROM sponsored_reels")
+    cursor.execute("SELECT shortcode, url, first_seen FROM sponsored_reels")
     rows = cursor.fetchall()
     conn.close()
     return rows
