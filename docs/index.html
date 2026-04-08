@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IG Reels Tracker</title>
+<style>
+  body { font-family: sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+  h1 { color: #333; }
+  .summary { display: flex; gap: 16px; margin: 20px 0; flex-wrap: wrap; }
+  .card { background: white; border-radius: 12px; padding: 20px; flex: 1; min-width: 150px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .card .number { font-size: 36px; font-weight: bold; color: #6c5ce7; }
+  .card .label { color: #888; margin-top: 4px; }
+  .updated { color: #aaa; font-size: 14px; margin-bottom: 20px; }
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 30px; }
+  th { background: #6c5ce7; color: white; padding: 12px 16px; text-align: left; font-weight: 500; }
+  td { padding: 10px 16px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+  .sponsored { background: #ffe0e0; color: #d63031; padding: 2px 8px; border-radius: 20px; font-size: 12px; }
+  .none { background: #e8f5e9; color: #27ae60; padding: 2px 8px; border-radius: 20px; font-size: 12px; }
+  a { color: #6c5ce7; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h2 { color: #444; margin-top: 30px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tab { padding: 8px 20px; border-radius: 20px; cursor: pointer; background: white; border: 2px solid #6c5ce7; color: #6c5ce7; font-size: 14px; }
+  .tab.active { background: #6c5ce7; color: white; }
+</style>
+</head>
+<body>
+
+<h1>📱 IG Reels Tracker</h1>
+<div class="updated" id="updated">載入中...</div>
+
+<div class="summary">
+  <div class="card"><div class="number" id="n_influencers">-</div><div class="label">追蹤網紅</div></div>
+  <div class="card"><div class="number" id="n_reels">-</div><div class="label">收錄 Reels</div></div>
+  <div class="card"><div class="number" id="n_sponsored">-</div><div class="label">業配 Reels</div></div>
+  <div class="card"><div class="number" id="n_stats">-</div><div class="label">互動數快照</div></div>
+</div>
+
+<h2>收錄的 Reels</h2>
+<div class="tabs">
+  <div class="tab active" onclick="filterReels('all')">全部</div>
+  <div class="tab" onclick="filterReels('sponsored')">業配</div>
+  <div class="tab" onclick="filterReels('none')">一般</div>
+</div>
+<table id="reels-table">
+  <thead>
+    <tr>
+      <th>KOL</th>
+      <th>發文時間</th>
+      <th>類型</th>
+      <th>AI 判斷理由</th>
+      <th>Tagged 品牌</th>
+      <th>連結</th>
+    </tr>
+  </thead>
+  <tbody id="reels-body"></tbody>
+</table>
+
+<h2>最新互動數</h2>
+<table>
+  <thead>
+    <tr>
+      <th>KOL</th>
+      <th>Shortcode</th>
+      <th>記錄時間</th>
+      <th>觀看數</th>
+      <th>播放數</th>
+      <th>按讚數</th>
+      <th>留言數</th>
+    </tr>
+  </thead>
+  <tbody id="stats-body"></tbody>
+</table>
+
+<script>
+let allReels = [];
+
+fetch('data.json?t=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById('updated').textContent = '最後更新：' + data.updated_at;
+    document.getElementById('n_influencers').textContent = data.summary.n_influencers;
+    document.getElementById('n_reels').textContent = data.summary.n_reels;
+    document.getElementById('n_sponsored').textContent = data.summary.n_sponsored;
+    document.getElementById('n_stats').textContent = data.summary.n_stats;
+
+    allReels = data.reels;
+    renderReels(allReels);
+
+    const statsBody = document.getElementById('stats-body');
+    data.stats.slice(0, 50).forEach(s => {
+      statsBody.innerHTML += `<tr>
+        <td>${s.username}</td>
+        <td><a href="https://www.instagram.com/reel/${s.shortcode}/" target="_blank">${s.shortcode}</a></td>
+        <td>${s.recorded_at}</td>
+        <td>${s.views?.toLocaleString() || 0}</td>
+        <td>${s.plays?.toLocaleString() || 0}</td>
+        <td>${s.likes?.toLocaleString() || 0}</td>
+        <td>${s.comments?.toLocaleString() || 0}</td>
+      </tr>`;
+    });
+  });
+
+function renderReels(reels) {
+  const body = document.getElementById('reels-body');
+  body.innerHTML = '';
+  reels.forEach(r => {
+    body.innerHTML += `<tr>
+      <td><strong>${r.username}</strong></td>
+      <td>${r.post_time}</td>
+      <td><span class="${r.sponsor_status}">${r.sponsor_status === 'sponsored' ? '業配' : '一般'}</span></td>
+      <td>${r.ai_reason || '-'}</td>
+      <td>${r.tagged_brands || '-'}</td>
+      <td><a href="${r.url}" target="_blank">查看</a></td>
+    </tr>`;
+  });
+}
+
+function filterReels(type) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  if (type === 'all') renderReels(allReels);
+  else renderReels(allReels.filter(r => r.sponsor_status === type));
+}
+</script>
+</body>
+</html>
