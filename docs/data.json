@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-04-16 16:14",
+  "updated_at": "2026-04-16 17:57",
   "summary": {
     "n_influencers": 128,
     "n_reels": 1,
     "n_sponsored": 0,
-    "n_stats": 130
+    "n_stats": 131
   },
   "reels": [
     {
@@ -19,6 +19,15 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-04-16 09:56",
+      "views": 15813,
+      "plays": 73711,
+      "likes": 2232,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
