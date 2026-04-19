@@ -4,27 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IG Reels Tracker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-  body { font-family: sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
-  h1 { color: #333; }
-  .summary { display: flex; gap: 16px; margin: 20px 0; flex-wrap: wrap; }
-  .card { background: white; border-radius: 12px; padding: 20px; flex: 1; min-width: 150px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-  .card .number { font-size: 36px; font-weight: bold; color: #6c5ce7; }
-  .card .label { color: #888; margin-top: 4px; }
-  .updated { color: #aaa; font-size: 14px; margin-bottom: 20px; }
-  table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 30px; }
-  th { background: #6c5ce7; color: white; padding: 12px 16px; text-align: left; font-weight: 500; }
-  td { padding: 10px 16px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; color: #333; }
+  h1 { margin-bottom: 4px; }
+  .updated { color: #aaa; font-size: 13px; margin-bottom: 24px; }
+  .summary { display: flex; gap: 16px; margin-bottom: 30px; flex-wrap: wrap; }
+  .card { background: white; border-radius: 12px; padding: 20px; flex: 1; min-width: 130px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .card .number { font-size: 32px; font-weight: bold; color: #6c5ce7; }
+  .card .label { color: #888; margin-top: 4px; font-size: 14px; }
+  h2 { margin: 30px 0 12px; color: #444; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+  .tab { padding: 6px 18px; border-radius: 20px; cursor: pointer; background: white; border: 2px solid #6c5ce7; color: #6c5ce7; font-size: 13px; }
+  .tab.active { background: #6c5ce7; color: white; }
+  table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.07); margin-bottom: 30px; }
+  th { background: #6c5ce7; color: white; padding: 12px 16px; text-align: left; font-weight: 500; font-size: 14px; }
+  td { padding: 10px 16px; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: #fafafa; }
   .sponsored { background: #ffe0e0; color: #d63031; padding: 2px 8px; border-radius: 20px; font-size: 12px; }
   .none { background: #e8f5e9; color: #27ae60; padding: 2px 8px; border-radius: 20px; font-size: 12px; }
   a { color: #6c5ce7; text-decoration: none; }
   a:hover { text-decoration: underline; }
-  h2 { color: #444; margin-top: 30px; }
-  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
-  .tab { padding: 8px 20px; border-radius: 20px; cursor: pointer; background: white; border: 2px solid #6c5ce7; color: #6c5ce7; font-size: 14px; }
-  .tab.active { background: #6c5ce7; color: white; }
+  .charts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: 20px; margin-bottom: 30px; }
+  .chart-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .chart-card h3 { font-size: 14px; color: #444; margin-bottom: 4px; }
+  .chart-card .chart-meta { font-size: 12px; color: #aaa; margin-bottom: 12px; }
+  .chart-card canvas { max-height: 200px; }
+  .empty { text-align: center; color: #aaa; padding: 40px; }
 </style>
 </head>
 <body>
@@ -39,11 +47,16 @@
   <div class="card"><div class="number" id="n_stats">-</div><div class="label">互動數快照</div></div>
 </div>
 
+<h2>播放數趨勢圖</h2>
+<div class="charts-grid" id="charts-grid">
+  <div class="empty">載入中...</div>
+</div>
+
 <h2>收錄的 Reels</h2>
 <div class="tabs">
-  <div class="tab active" onclick="filterReels('all')">全部</div>
-  <div class="tab" onclick="filterReels('sponsored')">業配</div>
-  <div class="tab" onclick="filterReels('none')">一般</div>
+  <div class="tab active" onclick="filterReels('all', this)">全部</div>
+  <div class="tab" onclick="filterReels('sponsored', this)">業配</div>
+  <div class="tab" onclick="filterReels('none', this)">一般</div>
 </div>
 <table id="reels-table">
   <thead>
@@ -78,6 +91,11 @@
 <script>
 let allReels = [];
 
+const COLORS = [
+  '#6c5ce7','#00b894','#e17055','#0984e3','#fd79a8',
+  '#55efc4','#fdcb6e','#a29bfe','#fab1a0','#74b9ff'
+];
+
 fetch('data.json?t=' + Date.now())
   .then(r => r.json())
   .then(data => {
@@ -89,6 +107,7 @@ fetch('data.json?t=' + Date.now())
 
     allReels = data.reels;
     renderReels(allReels);
+    renderCharts(data.reels, data.stats);
 
     const statsBody = document.getElementById('stats-body');
     data.stats.slice(0, 50).forEach(s => {
@@ -96,17 +115,110 @@ fetch('data.json?t=' + Date.now())
         <td>${s.username}</td>
         <td><a href="https://www.instagram.com/reel/${s.shortcode}/" target="_blank">${s.shortcode}</a></td>
         <td>${s.recorded_at}</td>
-        <td>${s.views?.toLocaleString() || 0}</td>
-        <td>${s.plays?.toLocaleString() || 0}</td>
-        <td>${s.likes?.toLocaleString() || 0}</td>
-        <td>${s.comments?.toLocaleString() || 0}</td>
+        <td>${Number(s.views||0).toLocaleString()}</td>
+        <td>${Number(s.plays||0).toLocaleString()}</td>
+        <td>${Number(s.likes||0).toLocaleString()}</td>
+        <td>${Number(s.comments||0).toLocaleString()}</td>
       </tr>`;
     });
   });
 
+function renderCharts(reels, stats) {
+  const grid = document.getElementById('charts-grid');
+  grid.innerHTML = '';
+
+  if (!reels.length) {
+    grid.innerHTML = '<div class="empty">還沒有收錄任何 Reels</div>';
+    return;
+  }
+
+  // 把 stats 依 shortcode 分組
+  const statsByShortcode = {};
+  stats.forEach(s => {
+    if (!statsByShortcode[s.shortcode]) statsByShortcode[s.shortcode] = [];
+    statsByShortcode[s.shortcode].push(s);
+  });
+
+  reels.forEach((reel, i) => {
+    const reelStats = (statsByShortcode[reel.shortcode] || [])
+      .sort((a, b) => a.recorded_at.localeCompare(b.recorded_at));
+
+    if (!reelStats.length) return;
+
+    const labels = reelStats.map(s => s.recorded_at.slice(5, 16)); // MM-DD HH:MM
+    const playsData = reelStats.map(s => s.plays || 0);
+    const viewsData = reelStats.map(s => s.views || 0);
+    const likesData = reelStats.map(s => s.likes || 0);
+
+    const color = COLORS[i % COLORS.length];
+
+    const card = document.createElement('div');
+    card.className = 'chart-card';
+    card.innerHTML = `
+      <h3>@${reel.username} <span style="color:#aaa;font-weight:normal">· ${reel.shortcode}</span></h3>
+      <div class="chart-meta">
+        發文：${reel.post_time} ·
+        <span class="${reel.sponsor_status}">${reel.sponsor_status === 'sponsored' ? '業配' : '一般'}</span>
+        · <a href="${reel.url}" target="_blank">查看原文</a>
+      </div>
+      <canvas id="chart-${reel.shortcode}"></canvas>
+    `;
+    grid.appendChild(card);
+
+    new Chart(document.getElementById('chart-' + reel.shortcode), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: '播放數',
+            data: playsData,
+            borderColor: color,
+            backgroundColor: color + '20',
+            fill: true,
+            tension: 0.4,
+            pointRadius: 3,
+          },
+          {
+            label: '觀看數',
+            data: viewsData,
+            borderColor: '#b2bec3',
+            backgroundColor: 'transparent',
+            borderDash: [4, 4],
+            tension: 0.4,
+            pointRadius: 2,
+          },
+          {
+            label: '按讚數',
+            data: likesData,
+            borderColor: '#fd79a8',
+            backgroundColor: 'transparent',
+            tension: 0.4,
+            pointRadius: 2,
+          },
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } },
+        },
+        scales: {
+          x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
+          y: { ticks: { font: { size: 10 } }, beginAtZero: false },
+        }
+      }
+    });
+  });
+}
+
 function renderReels(reels) {
   const body = document.getElementById('reels-body');
   body.innerHTML = '';
+  if (!reels.length) {
+    body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#aaa;padding:30px">還沒有資料</td></tr>';
+    return;
+  }
   reels.forEach(r => {
     body.innerHTML += `<tr>
       <td><strong>${r.username}</strong></td>
@@ -119,11 +231,10 @@ function renderReels(reels) {
   });
 }
 
-function filterReels(type) {
+function filterReels(type, el) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
-  if (type === 'all') renderReels(allReels);
-  else renderReels(allReels.filter(r => r.sponsor_status === type));
+  el.classList.add('active');
+  renderReels(type === 'all' ? allReels : allReels.filter(r => r.sponsor_status === type));
 }
 </script>
 </body>
