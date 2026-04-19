@@ -145,10 +145,13 @@ function renderCharts(reels, stats) {
 
     if (!reelStats.length) return;
 
-    const labels = reelStats.map(s => s.recorded_at.slice(5, 16)); // MM-DD HH:MM
-    const playsData = reelStats.map(s => s.plays || 0);
-    const viewsData = reelStats.map(s => s.views || 0);
-    const likesData = reelStats.map(s => s.likes || 0);
+    // 過濾掉 plays 和 views 同時為 0 的筆數（代表抓取失敗）
+    const validStats = reelStats.filter(s => (s.plays || 0) > 0 || (s.views || 0) > 0);
+
+    const labels = validStats.map(s => s.recorded_at.slice(5, 16));
+    const playsData = validStats.map(s => s.plays || 0);
+    const viewsData = validStats.map(s => s.views || 0);
+    const likesData = validStats.map(s => s.likes || 0);
 
     const color = COLORS[i % COLORS.length];
 
