@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-04-30 18:25",
+  "updated_at": "2026-04-30 19:59",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 1,
-    "n_sponsored": 0,
-    "n_stats": 325
+    "n_reels": 2,
+    "n_sponsored": 1,
+    "n_stats": 327
   },
   "reels": [
+    {
+      "username": "cheng4fake",
+      "shortcode": "DXwGpNGxz_P",
+      "url": "https://www.instagram.com/reels/DXwGpNGxz_P/",
+      "post_time": "2026-04-30 09:59:36",
+      "sponsor_status": "sponsored",
+      "ai_reason": "文案明確提及「心動小鎮」與「線條小狗」的「合作」，並推廣聯名活動及周邊商品。",
+      "tagged_brands": "",
+      "first_seen": "2026-04-30 10:50:31"
+    },
     {
       "username": "laurenveur",
       "shortcode": "DW1HdEiEhN8",
@@ -19,6 +29,24 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-04-30 11:59",
+      "views": 18039,
+      "plays": 80293,
+      "likes": 2450,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-04-30 11:59",
+      "views": 4277,
+      "plays": 20418,
+      "likes": 633,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
