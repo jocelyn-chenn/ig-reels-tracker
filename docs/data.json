@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-04-30 22:35",
+  "updated_at": "2026-05-01 00:58",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 2,
-    "n_sponsored": 1,
-    "n_stats": 329
+    "n_reels": 3,
+    "n_sponsored": 2,
+    "n_stats": 332
   },
   "reels": [
+    {
+      "username": "cinderzoee",
+      "shortcode": "DXwuP-uv3K7",
+      "url": "https://www.instagram.com/reels/DXwuP-uv3K7/",
+      "post_time": "2026-04-30 15:49:54",
+      "sponsor_status": "sponsored",
+      "ai_reason": "內文提及品牌名稱、推廣品牌活動與商品，並標註品牌官方帳號。",
+      "tagged_brands": "@levis_taiwan",
+      "first_seen": "2026-04-30 16:27:12"
+    },
     {
       "username": "cheng4fake",
       "shortcode": "DXwGpNGxz_P",
@@ -29,6 +39,33 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-04-30 16:57",
+      "views": 18077,
+      "plays": 80379,
+      "likes": 2450,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-04-30 16:57",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-04-30 16:57",
+      "views": 2526,
+      "plays": 12570,
+      "likes": 462,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
