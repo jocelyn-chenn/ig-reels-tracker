@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-05-01 18:06",
+  "updated_at": "2026-05-01 19:39",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 3,
+    "n_reels": 4,
     "n_sponsored": 2,
-    "n_stats": 356
+    "n_stats": 360
   },
   "reels": [
+    {
+      "username": "yushit_whonow",
+      "shortcode": "DXysyyCv-oo",
+      "url": "https://www.instagram.com/reels/DXysyyCv-oo/",
+      "post_time": "2026-05-01 10:16:44",
+      "sponsor_status": "none",
+      "ai_reason": "文案中未提及任何品牌、產品、折扣碼，也未標註品牌帳號或使用業配相關關鍵字。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-01 10:43:37"
+    },
     {
       "username": "cinderzoee",
       "shortcode": "DXwuP-uv3K7",
@@ -39,6 +49,42 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-01 11:39",
+      "views": 18121,
+      "plays": 80523,
+      "likes": 2454,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-01 11:39",
+      "views": 31279,
+      "plays": 88253,
+      "likes": 3158,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-01 11:39",
+      "views": 8219,
+      "plays": 34797,
+      "likes": 1149,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-01 11:39",
+      "views": 9155,
+      "plays": 32589,
+      "likes": 2107,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
