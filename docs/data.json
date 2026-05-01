@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-05-02 01:33",
+  "updated_at": "2026-05-02 03:48",
   "summary": {
     "n_influencers": 128,
     "n_reels": 5,
     "n_sponsored": 2,
-    "n_stats": 375
+    "n_stats": 380
   },
   "reels": [
     {
@@ -59,6 +59,51 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-01 19:47",
+      "views": 18145,
+      "plays": 80588,
+      "likes": 2454,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-01 19:47",
+      "views": 40386,
+      "plays": 110792,
+      "likes": 3715,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-01 19:47",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-01 19:47",
+      "views": 162731,
+      "plays": 592175,
+      "likes": 29611,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-01 19:47",
+      "views": 56472,
+      "plays": 145009,
+      "likes": 10428,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
