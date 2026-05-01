@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-05-01 19:39",
+  "updated_at": "2026-05-01 22:00",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 4,
+    "n_reels": 5,
     "n_sponsored": 2,
-    "n_stats": 360
+    "n_stats": 365
   },
   "reels": [
+    {
+      "username": "wangkaiwen820",
+      "shortcode": "DXy3uL4TsKQ",
+      "url": "https://www.instagram.com/reels/DXy3uL4TsKQ/",
+      "post_time": "2026-05-01 12:00:03",
+      "sponsor_status": "none",
+      "ai_reason": "文案中沒有提及品牌、產品、折扣碼，也沒有使用業配相關字詞或標記品牌帳號。",
+      "tagged_brands": "@crossing__cmike @crossing__cj",
+      "first_seen": "2026-05-01 12:15:56"
+    },
     {
       "username": "yushit_whonow",
       "shortcode": "DXysyyCv-oo",
@@ -49,6 +59,51 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-01 14:00",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-01 14:00",
+      "views": 34252,
+      "plays": 95772,
+      "likes": 3349,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-01 14:00",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-01 14:00",
+      "views": 80213,
+      "plays": 332760,
+      "likes": 16289,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-01 14:00",
+      "views": 23814,
+      "plays": 70480,
+      "likes": 4678,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
