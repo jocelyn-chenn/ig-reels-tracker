@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-05-03 06:07",
+  "updated_at": "2026-05-03 07:11",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 5,
+    "n_reels": 6,
     "n_sponsored": 2,
-    "n_stats": 470
+    "n_stats": 476
   },
   "reels": [
+    {
+      "username": "tanmilin",
+      "shortcode": "DX2jjzRT3RH",
+      "url": "https://www.instagram.com/reels/DX2jjzRT3RH/",
+      "post_time": "2026-05-02 22:12:11",
+      "sponsor_status": "none",
+      "ai_reason": "文案內容未提及任何品牌、產品、折扣碼，也無使用業配相關的關鍵字或標籤。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-02 22:52:56"
+    },
     {
       "username": "wangkaiwen820",
       "shortcode": "DXy3uL4TsKQ",
@@ -59,6 +69,60 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-02 23:10",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-02 23:10",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-02 23:10",
+      "views": 56596,
+      "plays": 146968,
+      "likes": 4436,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-02 23:10",
+      "views": 10617,
+      "plays": 43892,
+      "likes": 1323,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-02 23:10",
+      "views": 246642,
+      "plays": 827893,
+      "likes": 40718,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-02 23:10",
+      "views": 132847,
+      "plays": 304202,
+      "likes": 23313,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
