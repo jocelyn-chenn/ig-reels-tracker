@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-05-04 05:11",
+  "updated_at": "2026-05-04 06:08",
   "summary": {
     "n_influencers": 128,
     "n_reels": 9,
     "n_sponsored": 4,
-    "n_stats": 578
+    "n_stats": 587
   },
   "reels": [
     {
@@ -99,6 +99,87 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 18324,
+      "plays": 81067,
+      "likes": 2463,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 199,
+      "plays": 683,
+      "likes": 18,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 44652,
+      "plays": 163573,
+      "likes": 2338,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4Da9yTWGp",
+      "username": "chelseafoodlife",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4N3jOSqUP",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 154319,
+      "plays": 490744,
+      "likes": 24810,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 11022,
+      "plays": 45235,
+      "likes": 1355,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-03 22:07",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
