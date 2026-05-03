@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-05-03 20:07",
+  "updated_at": "2026-05-03 21:55",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 7,
-    "n_sponsored": 3,
-    "n_stats": 516
+    "n_reels": 8,
+    "n_sponsored": 4,
+    "n_stats": 524
   },
   "reels": [
+    {
+      "username": "chelseafoodlife",
+      "shortcode": "DX4Da9yTWGp",
+      "url": "https://www.instagram.com/reels/DX4Da9yTWGp/",
+      "post_time": "2026-05-03 12:05:04",
+      "sponsor_status": "sponsored",
+      "ai_reason": "文案中詳細介紹品牌產品、明確標示價格、並直接標記了品牌官方帳號。",
+      "tagged_brands": "@sushi_suisen",
+      "first_seen": "2026-05-03 12:49:30"
+    },
     {
       "username": "aliceeecccc",
       "shortcode": "DX3O_eQxmno",
@@ -79,6 +89,78 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 184,
+      "plays": 632,
+      "likes": 17,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4Da9yTWGp",
+      "username": "chelseafoodlife",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 570,
+      "plays": 2001,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 10936,
+      "plays": 45018,
+      "likes": 1352,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 265541,
+      "plays": 873402,
+      "likes": 43184,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-03 13:54",
+      "views": 158551,
+      "plays": 357707,
+      "likes": 27811,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
