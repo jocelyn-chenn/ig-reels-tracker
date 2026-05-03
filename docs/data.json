@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-05-03 12:28",
+  "updated_at": "2026-05-03 15:07",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 6,
-    "n_sponsored": 2,
-    "n_stats": 488
+    "n_reels": 7,
+    "n_sponsored": 3,
+    "n_stats": 495
   },
   "reels": [
+    {
+      "username": "aliceeecccc",
+      "shortcode": "DX3O_eQxmno",
+      "url": "https://www.instagram.com/reels/DX3O_eQxmno/",
+      "post_time": "2026-05-03 04:27:18",
+      "sponsor_status": "sponsored",
+      "ai_reason": "文案中明確提到品牌名稱、標註品牌帳號，並提供詳細的消費折扣資訊，符合業配文的判斷標準。",
+      "tagged_brands": "@watsonstaiwan",
+      "first_seen": "2026-05-03 05:24:50"
+    },
     {
       "username": "tanmilin",
       "shortcode": "DX2jjzRT3RH",
@@ -69,6 +79,69 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-03 07:06",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-03 07:06",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-03 07:06",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-03 07:06",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-03 07:06",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-03 07:06",
+      "views": 256938,
+      "plays": 852926,
+      "likes": 42109,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-03 07:06",
+      "views": 146213,
+      "plays": 331828,
+      "likes": 25637,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
