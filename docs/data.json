@@ -1,12 +1,22 @@
 {
-  "updated_at": "2026-05-03 21:55",
+  "updated_at": "2026-05-03 23:11",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 8,
+    "n_reels": 9,
     "n_sponsored": 4,
-    "n_stats": 524
+    "n_stats": 533
   },
   "reels": [
+    {
+      "username": "thetiffanychen",
+      "shortcode": "DX4N3jOSqUP",
+      "url": "https://www.instagram.com/reels/DX4N3jOSqUP/",
+      "post_time": "2026-05-03 13:48:57",
+      "sponsor_status": "none",
+      "ai_reason": "文案中沒有提到品牌、產品、折扣碼、感謝品牌，也沒有標註任何品牌帳號或使用業配相關關鍵字。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-03 14:29:16"
+    },
     {
       "username": "chelseafoodlife",
       "shortcode": "DX4Da9yTWGp",
@@ -89,6 +99,87 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 190,
+      "plays": 657,
+      "likes": 17,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4Da9yTWGp",
+      "username": "chelseafoodlife",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 697,
+      "plays": 2362,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4N3jOSqUP",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 74467,
+      "plays": 258471,
+      "likes": 13045,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 66870,
+      "plays": 167660,
+      "likes": 4799,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 10964,
+      "plays": 45086,
+      "likes": 1352,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-03 15:10",
+      "views": 160858,
+      "plays": 362377,
+      "likes": 28171,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
