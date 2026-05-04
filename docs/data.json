@@ -1,10 +1,10 @@
 {
-  "updated_at": "2026-05-05 02:02",
+  "updated_at": "2026-05-05 04:03",
   "summary": {
     "n_influencers": 128,
     "n_reels": 11,
     "n_sponsored": 6,
-    "n_stats": 665
+    "n_stats": 676
   },
   "reels": [
     {
@@ -119,6 +119,105 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 18476,
+      "plays": 81446,
+      "likes": 2466,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 49657,
+      "plays": 180623,
+      "likes": 2532,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4Da9yTWGp",
+      "username": "chelseafoodlife",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 1691,
+      "plays": 4806,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4N3jOSqUP",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 311981,
+      "plays": 894108,
+      "likes": 43639,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6cRoMPAuS",
+      "username": "ning3035",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6pEXszQon",
+      "username": "gdan_pudding",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 3296,
+      "plays": 14355,
+      "likes": 596,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 87038,
+      "plays": 207311,
+      "likes": 5298,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-04 20:02",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
