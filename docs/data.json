@@ -1,12 +1,32 @@
 {
-  "updated_at": "2026-05-04 18:33",
+  "updated_at": "2026-05-04 21:10",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 9,
-    "n_sponsored": 4,
-    "n_stats": 632
+    "n_reels": 11,
+    "n_sponsored": 6,
+    "n_stats": 643
   },
   "reels": [
+    {
+      "username": "gdan_pudding",
+      "shortcode": "DX6pEXszQon",
+      "url": "https://www.instagram.com/reels/DX6pEXszQon/",
+      "post_time": "2026-05-04 12:13:30",
+      "sponsor_status": "sponsored",
+      "ai_reason": "該文案明確提及品牌和產品名稱、標註品牌官方帳號，並引導消費者至實體通路購買且提供滿額贈活動。",
+      "tagged_brands": "@cellina1940",
+      "first_seen": "2026-05-04 12:27:16"
+    },
+    {
+      "username": "ning3035",
+      "shortcode": "DX6cRoMPAuS",
+      "url": "https://www.instagram.com/reels/DX6cRoMPAuS/",
+      "post_time": "2026-05-04 10:23:31",
+      "sponsor_status": "sponsored",
+      "ai_reason": "文案中明確提到品牌名稱、產品名稱、特定的優惠折扣（9折），並引導粉絲到指定零售店（屈臣氏&康是美）購買。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-04 11:13:55"
+    },
     {
       "username": "thetiffanychen",
       "shortcode": "DX4N3jOSqUP",
@@ -99,6 +119,105 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 18412,
+      "plays": 81289,
+      "likes": 2464,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 222,
+      "plays": 766,
+      "likes": 22,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 48945,
+      "plays": 178907,
+      "likes": 2517,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4Da9yTWGp",
+      "username": "chelseafoodlife",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 1631,
+      "plays": 4629,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4N3jOSqUP",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 285424,
+      "plays": 833818,
+      "likes": 40212,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6cRoMPAuS",
+      "username": "ning3035",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 7750,
+      "plays": 27879,
+      "likes": 473,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6pEXszQon",
+      "username": "gdan_pudding",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 1390,
+      "plays": 5643,
+      "likes": 263,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 282317,
+      "plays": 912007,
+      "likes": 45263,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-04 13:08",
+      "views": 177192,
+      "plays": 395180,
+      "likes": 30988,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
