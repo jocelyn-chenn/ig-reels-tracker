@@ -1,12 +1,82 @@
 {
-  "updated_at": "2026-05-05 19:50",
+  "updated_at": "2026-05-06 01:07",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 13,
-    "n_sponsored": 6,
-    "n_stats": 757
+    "n_reels": 20,
+    "n_sponsored": 8,
+    "n_stats": 777
   },
   "reels": [
+    {
+      "username": "x.yunny.x",
+      "shortcode": "DX9kWv6sj13",
+      "url": "https://www.instagram.com/reels/DX9kWv6sj13/",
+      "post_time": "2026-05-05 15:30:15",
+      "sponsor_status": "none",
+      "ai_reason": "文案為直接銷售帳號所提供產品，缺乏品牌標籤或合作字眼等業配特徵。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-05 15:56:20"
+    },
+    {
+      "username": "evasports_",
+      "shortcode": "DX9eMfOz4Q5",
+      "url": "https://www.instagram.com/reels/DX9eMfOz4Q5/",
+      "post_time": "2026-05-05 14:41:10",
+      "sponsor_status": "none",
+      "ai_reason": "文案內容僅為拍攝教學分享，未提及任何品牌、產品、折扣碼，也未標記品牌帳號或使用業配相關關鍵字。",
+      "tagged_brands": "@oo0o0_o",
+      "first_seen": "2026-05-05 15:37:49"
+    },
+    {
+      "username": "wow4ivan",
+      "shortcode": "DX9ShQBzuzh",
+      "url": "https://www.instagram.com/reels/DX9ShQBzuzh/",
+      "post_time": "2026-05-05 12:55:41",
+      "sponsor_status": "none",
+      "ai_reason": "文案中未提及任何品牌、產品名稱、折扣碼，也無標註品牌帳號或使用業配相關關鍵字。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-05 13:39:07"
+    },
+    {
+      "username": "thetiffanychen",
+      "shortcode": "DX9VHoiS8J2",
+      "url": "https://www.instagram.com/reels/DX9VHoiS8J2/",
+      "post_time": "2026-05-05 13:19:56",
+      "sponsor_status": "none",
+      "ai_reason": "文案中沒有提及任何品牌、產品、折扣碼，也沒有使用業配相關的關鍵字或標註品牌帳號。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-05 13:36:46"
+    },
+    {
+      "username": "qdd_x1",
+      "shortcode": "DX9S6OVJG4T",
+      "url": "https://www.instagram.com/reels/DX9S6OVJG4T/",
+      "post_time": "2026-05-05 12:58:47",
+      "sponsor_status": "sponsored",
+      "ai_reason": "文案中明確提及媚比琳與Converse的「跨界合作」，並提供詳細的品牌消費優惠活動。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-05 13:32:45"
+    },
+    {
+      "username": "ellieciouss",
+      "shortcode": "DX9TjpTPgn3",
+      "url": "https://www.instagram.com/reels/DX9TjpTPgn3/",
+      "post_time": "2026-05-05 13:03:44",
+      "sponsor_status": "none",
+      "ai_reason": "文案內容未提及任何品牌、產品、折扣碼，也無相關合作、贊助等關鍵字，且未tag任何帳號。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-05 13:19:32"
+    },
+    {
+      "username": "arielsvlog_816",
+      "shortcode": "DX9RdgOS8nT",
+      "url": "https://www.instagram.com/reels/DX9RdgOS8nT/",
+      "post_time": "2026-05-05 12:49:37",
+      "sponsor_status": "sponsored",
+      "ai_reason": "文案中明確感謝了特定品牌（KingCart 卡特王），多次提及並推薦該品牌商品及服務，且有標註品牌帳號。",
+      "tagged_brands": "@kingcart_tw",
+      "first_seen": "2026-05-05 13:15:11"
+    },
     {
       "username": "ning3035",
       "shortcode": "DX9FDx3PYke",
@@ -139,6 +209,186 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 241,
+      "plays": 813,
+      "likes": 26,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 51504,
+      "plays": 185717,
+      "likes": 2612,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4Da9yTWGp",
+      "username": "chelseafoodlife",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 1811,
+      "plays": 5143,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4N3jOSqUP",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6cRoMPAuS",
+      "username": "ning3035",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6pEXszQon",
+      "username": "gdan_pudding",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 4996,
+      "plays": 20808,
+      "likes": 837,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX8ZKZpzM9w",
+      "username": "ntsai25",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9FDx3PYke",
+      "username": "ning3035",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9RdgOS8nT",
+      "username": "arielsvlog_816",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 53825,
+      "plays": 190331,
+      "likes": 5705,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9S6OVJG4T",
+      "username": "qdd_x1",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9ShQBzuzh",
+      "username": "wow4ivan",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9TjpTPgn3",
+      "username": "ellieciouss",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 24943,
+      "plays": 99601,
+      "likes": 4450,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9VHoiS8J2",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 96520,
+      "plays": 311331,
+      "likes": 15937,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9eMfOz4Q5",
+      "username": "evasports_",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 3206,
+      "plays": 12002,
+      "likes": 507,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9kWv6sj13",
+      "username": "x.yunny.x",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 2488,
+      "plays": 9151,
+      "likes": 229,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 99916,
+      "plays": 232498,
+      "likes": 5546,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 294746,
+      "plays": 940870,
+      "likes": 46616,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-05 17:05",
+      "views": 197869,
+      "plays": 435738,
+      "likes": 34492,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
