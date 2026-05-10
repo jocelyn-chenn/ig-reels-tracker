@@ -1,12 +1,32 @@
 {
-  "updated_at": "2026-05-10 22:03",
+  "updated_at": "2026-05-10 23:34",
   "summary": {
     "n_influencers": 128,
-    "n_reels": 32,
+    "n_reels": 34,
     "n_sponsored": 13,
-    "n_stats": 2091
+    "n_stats": 2125
   },
   "reels": [
+    {
+      "username": "wow4ivan",
+      "shortcode": "DYKRHVSTHt5",
+      "url": "https://www.instagram.com/reels/DYKRHVSTHt5/",
+      "post_time": "2026-05-10 13:54:11",
+      "sponsor_status": "none",
+      "ai_reason": "文案內容為個人心情抒發，未提及品牌、產品、折扣碼，也沒有標註品牌或使用業配相關關鍵字。",
+      "tagged_brands": "",
+      "first_seen": "2026-05-10 14:43:59"
+    },
+    {
+      "username": "ntsai25",
+      "shortcode": "DYKTIIDT1Dw",
+      "url": "https://www.instagram.com/reels/DYKTIIDT1Dw/",
+      "post_time": "2026-05-10 14:09:49",
+      "sponsor_status": "none",
+      "ai_reason": "文案中提到品牌名稱是為了介紹受訪者的身份與職涯背景，並未直接推廣該品牌產品或服務，也沒有任何商業合作的關鍵字或優惠資訊。",
+      "tagged_brands": "@blairechen",
+      "first_seen": "2026-05-10 14:35:55"
+    },
     {
       "username": "althea_hsingan",
       "shortcode": "DYKKSQdPLjj",
@@ -329,6 +349,312 @@
     }
   ],
   "stats": [
+    {
+      "shortcode": "DW1HdEiEhN8",
+      "username": "laurenveur",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 19535,
+      "plays": 83955,
+      "likes": 2482,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX-_Kg0TJRT",
+      "username": "heyheyastor",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 24450,
+      "plays": 76634,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX2jjzRT3RH",
+      "username": "tanmilin",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 277,
+      "plays": 908,
+      "likes": 29,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX3O_eQxmno",
+      "username": "aliceeecccc",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4Da9yTWGp",
+      "username": "chelseafoodlife",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 1983,
+      "plays": 5621,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX4N3jOSqUP",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 382168,
+      "plays": 1055828,
+      "likes": 52780,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6cRoMPAuS",
+      "username": "ning3035",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 25789,
+      "plays": 81921,
+      "likes": 1294,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX6pEXszQon",
+      "username": "gdan_pudding",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 6217,
+      "plays": 24772,
+      "likes": 1016,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX8ZKZpzM9w",
+      "username": "ntsai25",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 16299,
+      "plays": 61943,
+      "likes": 588,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9FDx3PYke",
+      "username": "ning3035",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 10889,
+      "plays": 45051,
+      "likes": 1096,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9RdgOS8nT",
+      "username": "arielsvlog_816",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9S6OVJG4T",
+      "username": "qdd_x1",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 16278,
+      "plays": 56897,
+      "likes": 2952,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9ShQBzuzh",
+      "username": "wow4ivan",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9TjpTPgn3",
+      "username": "ellieciouss",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9VHoiS8J2",
+      "username": "thetiffanychen",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 267502,
+      "plays": 733158,
+      "likes": 37677,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9eMfOz4Q5",
+      "username": "evasports_",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 8350,
+      "plays": 27751,
+      "likes": 1063,
+      "comments": 0
+    },
+    {
+      "shortcode": "DX9kWv6sj13",
+      "username": "x.yunny.x",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 9914,
+      "plays": 29194,
+      "likes": 665,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwGpNGxz_P",
+      "username": "cheng4fake",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXwuP-uv3K7",
+      "username": "cinderzoee",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXy3uL4TsKQ",
+      "username": "wangkaiwen820",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 347180,
+      "plays": 1054481,
+      "likes": 52094,
+      "comments": 0
+    },
+    {
+      "shortcode": "DXysyyCv-oo",
+      "username": "yushit_whonow",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYCdEUIB2jt",
+      "username": "ntsai25",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 5232,
+      "plays": 19509,
+      "likes": 173,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYFED8cyaT8",
+      "username": "wayne__yeah",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYH3k8CSZX9",
+      "username": "weiwei4320",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 9835,
+      "plays": 36069,
+      "likes": 1183,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYH7vcoM8Ne",
+      "username": "x.yunny.x",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYHV-F_v0st",
+      "username": "teacherchiang",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYHgoy-TVak",
+      "username": "vv_levia",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 17566,
+      "plays": 63956,
+      "likes": -1,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYHhJ2GTiKZ",
+      "username": "tang_ful",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYHpSgkT2Xc",
+      "username": "nene_shao",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 19437,
+      "plays": 52611,
+      "likes": 2295,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYHuseDTd6b",
+      "username": "lees_is_me",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYJlZk4uau5",
+      "username": "ooxxq60297ya",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYKKSQdPLjj",
+      "username": "althea_hsingan",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 0,
+      "plays": 0,
+      "likes": 0,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYKRHVSTHt5",
+      "username": "wow4ivan",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 33454,
+      "plays": 126433,
+      "likes": 8016,
+      "comments": 0
+    },
+    {
+      "shortcode": "DYKTIIDT1Dw",
+      "username": "ntsai25",
+      "recorded_at": "2026-05-10 15:31",
+      "views": 5191,
+      "plays": 16924,
+      "likes": 207,
+      "comments": 0
+    },
     {
       "shortcode": "DW1HdEiEhN8",
       "username": "laurenveur",
